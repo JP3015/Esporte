@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div layout:fragment="content">
+        <h1>Lista de Modalidades</h1>
+        <table class="table">
+            <tr>
+                <th>Nome</th>
+                <th>Individual</th>
+                <th>Data</th>
+                <th></th>
+            </tr>
+            <tr th:each="item:${modalidades}">
+                <td th:text="${item.nome}"></td>
+                <td th:text="${item.individual?'Sim':'Não'}"></td>
+                <td th:text="${#temporals.format(item.data,'dd/MM/yyyy')}"></td>
+                <td>
+                    <a class="btn btn-outline-dark" th:href="@{/modalidade/detalhes/} + ${item.codigo}">Detalhes</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
